@@ -7,14 +7,14 @@ import matplotlib.pyplot as plt
 import rebound as rb
 import reboundx as rx
 
-tup_num = 25
+tup_num = 50 # used to be 25  
 e_b = np.linspace(0, 0.7, tup_num)
 a_p = np.linspace(1, 5, tup_num)
 
 Np = 15
 
 Qex = []
-for x in range(4,7):
+for x in range(1,3): # was originally in the range of 4 and 7
     Q = 10**x
     Qex.append(Q)
 
@@ -67,10 +67,10 @@ def survival(initial):
     ps[0].params["tctl_tau"] = 3/(2*Q*k2*nb)
     tau = ps[0].params["tctl_tau"]
 
-    directory_orbit = '/mnt/raid-cita/ksmith/COPE_SUNNY/'
-   #rebx.save(directory_orbit+'COPE_SUNNY_xarchive.bin')
-    filename_orbit = r"COPE_SUNNY_eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.bin".format(eb,ap,Np,tup_num,Q,tau)
-   #sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True)
+    directory_orbit = '/mnt/raid-cita/ksmith/COPE_SUNNY_FINE_TUP_50/'
+    rebx.save(directory_orbit+'xarchive_SUNNY_FINE_TUP_50.bin')
+    filename_orbit = r"COPE_SUNNY_FINE_TUP_50_eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.bin".format(eb,ap,Np,tup_num,Q,tau)
+    sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True)
 
     
     #integrate
@@ -104,27 +104,28 @@ def survival(initial):
                 break
     surv[(surv==0)] = time
     
-   # print(f'simulation finished, {len(sim.particles)-2} planets remaining')
-    directory_surv = '/mnt/raid-cita/ksmith/CSTE_SUNNY/'    
-    #np.savetxt(directory_surv+'SUNNY_raw_survival_time.bin', surv)
-    np.savetxt(directory_surv+f'SUNNY_raw_survival_time_eb{eb}_ap{ap}.npy', surv)     
+    #print(f'simulation finished, {len(sim.particles)-2} planets remaining')
+   
+    # saving raw survival times
+    directory_surv = '/mnt/raid-cita/ksmith/CSTE_SUNNY_FINE_TUP_50/'    
+    np.savetxt(directory_surv+f'SUNNY_raw_survival_time_eb{eb}_ap{ap}_Q{Q}.npy', surv) # NEED TO EDIT THIS AND ALSO SAVE THE Q VALUE WITHIN THE FILE NAME WHEN THE FINER RESOLUTION IS RUN    
     return np.mean(surv)
    
 pool = rb.InterruptiblePool()
 mapping = pool.map(func= survival, iterable= tup_list)
 
-directory_surv = '/mnt/raid-cita/ksmith/CSTE_SUNNY/'
-npy_surv = f'CSTE_SUNNY_map_tup{tup_num}plan{Np}_Qi{Qex[0]}_Qf{Qex[-1]}.npy'
-bin_surv = f'CSTE_SUNNY_map_tup{tup_num}plan{Np}_Qi{Qex[0]}_Qf{Qex[-1]}.bin'
+directory_surv = '/mnt/raid-cita/ksmith/CSTE_SUNNY_FINE_TUP_50/'
+npy_surv = f'CSTE_SUNNY_map_tup{tup_num}plan{Np}_Qnum{len(Qex)}.npy'
+#bin_surv = f'CSTE_SUNNY_map_tup{tup_num}plan{Np}_Qi{Qex[0]}_Qf{Qex[-1]}.bin'
 #txt_surv = f'CSTE_SUNNY_map_tup{tup_num}plan{Np}_Qi{Qex[0]}_Qf{Qex[-1]}.txt'
 
-#np.savetxt(directory_surv+npy_surv, mapping)
+np.savetxt(directory_surv+npy_surv, mapping)
 #np.savetxt(directory_surv+bin_surv, mapping)
 #np.savetxt(directory_surv+txt_surv, mapping)
 
 directory_test = '/mnt/raid-cita/ksmith/'
 completed = 'The simulation finished!'
-name = 'SUNNY_DONE'
+name = 'SUNNY_FINE_DONE'
 np.save(directory_test+name, completed)
 
 
