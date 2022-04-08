@@ -13,25 +13,29 @@ a_p = np.linspace(1, 5, tup_num)
 
 Np = 15
 
-Qex = []
-for x in range(4,5): # was originally in the range of 4 and 7
-    Q = 10**x
-    Qex.append(Q)
+#Qex = []
+#for x in range(3,5):
+#    Q = 10**x
+#    Qex.append(Q)
 
 tup_list = []
 
-for Q in Qex:
-    for e in e_b:
-        for a in a_p:
-            tup_list.append((Q,e,a,Np))
-Nq = len(Qex)
+#for Q in Qex:
+#    for e in e_b:
+#        for a in a_p:
+#            tup_list.append((Q,e,a,Np)) 
+for e in e_b:
+    for a in a_p:
+        tup_list.append((e,a,Np))
+
+#Nq = len(Qex)
 Ne = len(e_b)
 Na = len(a_p)
 
 
 def survival(initial):    
-    Q, eb, ap, Np = initial[0], initial[1], initial[2], initial[3]
-
+   #Q, eb, ap, Np = initial[0], initial[1], initial[2], initial[3]
+    eb, ap, Np = initial[0], initial[1], initial[2]
     sim = rb.Simulation()
     sim.integrator = "whfast"
     
@@ -64,12 +68,15 @@ def survival(initial):
     k2 = ps[0].params["tctl_k1"] = 0.035
     nb = ps[1].n
         
-    ps[0].params["tctl_tau"] = 3/(2*Q*k2*nb)
+    ps[0].params["tctl_tau"] = 0 #3/(2*Q*k2*nb)  TURN THIS BACK ON WHEN YOU WANT TIDES
     tau = ps[0].params["tctl_tau"]
-
-    directory_orbit = '/mnt/raid-cita/ksmith/COPE_SUNNY_FINE_LONG/'
-    #rebx.save(directory_orbit+'xarchive_SUNNY_FINE_LONG.bin') TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
-    filename_orbit = r"COPE_SUNNY_FINE_LONG_eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.bin".format(eb,ap,Np,tup_num,Q,tau)
+    
+    directory_orbit = "/mnt/raid-cita/ksmith/COPE_SUNNY_CONTROL/" # CONTROL
+    #directory_orbit = '/mnt/raid-cita/ksmith/COPE_SUNNY_FINE_LONG/' # TIDES
+    rebx.save(directory_orbit+"xarchive_SUNNY_CONTROL.bin") # CONTROL
+    #rebx.save(directory_orbit+r"xarchive_Q{Q}_SUNNY_FINE_LONG.bin") # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
+    filename_orbit = r"COPE_SUNNY_CONTROL_eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_tau{:.1f}.bin".format(eb,ap,Np,tup_num,tau) # CONTROL
+    #filename_orbit = r"COPE_SUNNY_FINE_LONG_eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.bin".format(eb,ap,Np,tup_num,Q,tau) # TIDES
     sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True)
 
     
@@ -107,15 +114,19 @@ def survival(initial):
     #print(f'simulation finished, {len(sim.particles)-2} planets remaining')
    
     # saving raw survival times
-    directory_surv = '/mnt/raid-cita/ksmith/CSTE_SUNNY_FINE_LONG/'    
-    np.savetxt(directory_surv+f'SUNNY_LONG_raw_survival_time_eb{eb}_ap{ap}_Q{Q}.npy', surv)    
+    
+    #directory_surv = '/mnt/raid-cita/ksmith/CSTE_SUNNY_FINE_LONG/' # TIDES
+    directory_surv = "/mnt/raid-cita/ksmith/CSTE_SUNNY_CONTROL/" # CONTROL    
+    #np.savetxt(directory_surv+f'SUNNY_LONG_raw_survival_time_eb{eb}_ap{ap}_Q{Q}.npy', surv) # TIDES
+    np.savetxt(directory_surv+f"SUNNY_CONTROL_raw_survival_times_eb{eb}_ap{ap}.npy", surv) # CONTROL    
     return np.mean(surv)
    
 pool = rb.InterruptiblePool()
 mapping = pool.map(func= survival, iterable= tup_list)
 
-directory_surv = '/mnt/raid-cita/ksmith/CSTE_SUNNY_FINE_LONG/'
-npy_surv = f'CSTE_SUNNY_LONG_map_tup{tup_num}plan{Np}_Qnum{len(Qex)}.npy'
+directory_surv = '/mnt/raid-cita/ksmith/CSTE_SUNNY_CONTROL//'
+npy_surv = f"CSTE_SUNNY_CONTROL_map_tup{tup_num}plan{Np}.npy"
+#npy_surv = f'CSTE_SUNNY_LONG_map_tup{tup_num}plan{Np}_Qnum{len(Qex)}.npy' # TIDES
 #bin_surv = f'CSTE_SUNNY_map_tup{tup_num}plan{Np}_Qi{Qex[0]}_Qf{Qex[-1]}.bin'
 #txt_surv = f'CSTE_SUNNY_map_tup{tup_num}plan{Np}_Qi{Qex[0]}_Qf{Qex[-1]}.txt'
 
@@ -125,7 +136,8 @@ np.savetxt(directory_surv+npy_surv, mapping)
 
 directory_test = '/mnt/raid-cita/ksmith/'
 completed = 'The simulation finished!'
-name = 'SUNNY_LONG_DONE'
+name = "SUNNY_CONTROL_DONE"
+#name = 'SUNNY_LONG_DONE' # TIDES
 np.save(directory_test+name, completed)
 
 
