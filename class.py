@@ -13,7 +13,7 @@ a_p = np.linspace(1, 5, tup_num)
 
 Np = 15
 
-Qex = [np.inf]
+Qex = [None]
 tidal_lag = [2,3,4]
 for x in tidal_lag:
     Q = 10**x
