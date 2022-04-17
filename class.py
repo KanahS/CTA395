@@ -12,8 +12,8 @@ e_b = np.linspace(0, 0.7, tup_num)
 a_p = np.linspace(1, 5, tup_num)
 Np = 15
 
-Qex = []
-tidal_lag = [None,2,3,4]
+Qex = [np.inf]
+tidal_lag = [2,3,4]
 for x in tidal_lag:
     Q = 10**x
     Qex.append(Q)
@@ -122,7 +122,7 @@ mapping = pool.map(func= survival, iterable= tup_list)
 
 directory_surv = "/mnt/raid-cita/ksmith/CSTE_SUNNY_FINE_LONG/"
 #npy_surv = f"CSTE_SUNNY_CONTROL_map_tup{tup_num}plan{Np}.npy"
-npy_surv = f"CSTE_SUNNY_LONG_map_tup{tup_num}plan{Np}_Qs{Qex}.npy" # TIDES
+npy_surv = f"CSTE_SUNNY_LONG_map_tup{tup_num}plan{Np}_Qs{Qex[:]}.npy" # TIDES
 #bin_surv = f'CSTE_SUNNY_map_tup{tup_num}plan{Np}_Qi{Qex[0]}_Qf{Qex[-1]}.bin'
 #txt_surv = f'CSTE_SUNNY_map_tup{tup_num}plan{Np}_Qi{Qex[0]}_Qf{Qex[-1]}.txt'
 
