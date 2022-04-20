@@ -1,0 +1,33 @@
+=>> PBS: job killed: walltime 172810 exceeded limit 172800
+---------------------------------------------------
+Job Resources Requested:
+
+cput=100000:00:00,ncpus=1,neednodes=8:ppn=16,nodes=8:ppn=16,walltime=48:00:00
+---------------------------------------------------
+Job Resources Used:
+
+cput=1390:32:37,mem=1385984kb,vmem=43821272kb,walltime=48:00:11
+---------------------------------------------------
+
+---------------------------------------------------
+Job Script:
+
+#!/bin/bash -l
+
+#PBS -l nodes=8:ppn=16
+#PBS -l walltime=48:00:00
+#PBS -r n
+#PBS -j oe
+#PBS -q hpq
+
+cd /mnt/raid-cita/ksmith/runs/
+
+module load gcc/9.3.0 openmpi/4.0.3-gcc-9.3.0
+module load python/3.8.2
+
+#mpirun -np 8 -map-by node:SPAN
+
+python3 class.py
+
+---------------------------------------------------
+
