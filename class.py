@@ -13,10 +13,10 @@ a_p = np.linspace(1, 5, tup_num)
 Np = 15
 
 Qex = [np.inf]
-tidal_lag = [2,3,4]
-for x in tidal_lag:
-    Q = 10**x
-    Qex.append(Q)
+#tidal_lag = [2,3,4]
+#for x in tidal_lag:
+#    Q = 10**x
+#    Qex.append(Q)
 
 tup_list = []
 
@@ -69,12 +69,12 @@ def survival(initial):
         tau = ps[0].params["tctl_tau"] = 3/(2*Q*k2*nb)
         
     #directory_orbit = "/mnt/raid-cita/ksmith/COPE_SUNNY_CONTROL/" # CONTROL
-    #directory_orbit = '/mnt/raid-cita/ksmith/COPE_SUNNY_FINE_LONG/' # TIDES
+    directory_orbit = '/mnt/raid-cita/ksmith/COPE_SUNNY_FINE_LONG/' # TIDES
     #rebx.save(directory_orbit+"xarchive_SUNNY_CONTROL.bin") # CONTROL
     #rebx.save(directory_orbit+r"xarchive_Q{Q}_SUNNY_FINE_LONG.bin") # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
-    #filename_orbit = r"COPE_SUNNY_CONTROL_eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_tau{:.1f}.bin".format(eb,ap,Np,tup_num,tau) # CONTROL
+    filename_orbit = r"COPE_SUNNY_FINE_LONG_eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.bin".format(eb,ap,Np,tup_num,Q,tau) # CONTROL
     #filename_orbit = r"COPE_SUNNY_FINE_LONG_eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.bin".format(eb,ap,Np,tup_num,Q,tau) # TIDES
-    #sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True)
+    sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True)
 
     
     #integrate
@@ -120,13 +120,13 @@ def survival(initial):
 pool = rb.InterruptiblePool()
 mapping = pool.map(func= survival, iterable= tup_list)
 
-directory_surv = "/mnt/raid-cita/ksmith/CSTE_SUNNY_FINE_LONG/"
+#directory_surv = "/mnt/raid-cita/ksmith/CSTE_SUNNY_FINE_LONG/"
 #npy_surv = f"CSTE_SUNNY_CONTROL_map_tup{tup_num}plan{Np}.npy"
-npy_surv = f"CSTE_SUNNY_LONG_map_tup{tup_num}plan{Np}_Qs{Qex[:]}.npy" # TIDES
+#npy_surv = f"CSTE_SUNNY_LONG_map_tup{tup_num}plan{Np}_Qs{Qex[:]}.npy" # TIDES
 #bin_surv = f'CSTE_SUNNY_map_tup{tup_num}plan{Np}_Qi{Qex[0]}_Qf{Qex[-1]}.bin'
 #txt_surv = f'CSTE_SUNNY_map_tup{tup_num}plan{Np}_Qi{Qex[0]}_Qf{Qex[-1]}.txt'
 
-np.savetxt(directory_surv+npy_surv, mapping)
+#np.savetxt(directory_surv+npy_surv, mapping)
 #np.savetxt(directory_surv+bin_surv, mapping)
 #np.savetxt(directory_surv+txt_surv, mapping)
 
