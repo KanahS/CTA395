@@ -69,12 +69,12 @@ def survival(initial):
         tau = ps[0].params["tctl_tau"] = 3/(2*Q*k2*nb)
         
     #directory_orbit = "/mnt/raid-cita/ksmith/COPE_SUNNY_CONTROL/" # CONTROL
-    directory_orbit = '/mnt/raid-cita/ksmith/COPE_SUNNY_FINE_LONG/' # TIDES
+    #directory_orbit = '/mnt/raid-cita/ksmith/COPE_SUNNY_FINE_LONG/' # TIDES
     #rebx.save(directory_orbit+"xarchive_SUNNY_CONTROL.bin") # CONTROL
     #rebx.save(directory_orbit+r"xarchive_Q{Q}_SUNNY_FINE_LONG.bin") # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
-    filename_orbit = r"COPE_SUNNY_FINE_LONG_eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.bin".format(eb,ap,Np,tup_num,Q,tau) # CONTROL
+    #filename_orbit = r"COPE_SUNNY_FINE_LONG_eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.bin".format(eb,ap,Np,tup_num,Q,tau) # CONTROL
     #filename_orbit = r"COPE_SUNNY_FINE_LONG_eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.bin".format(eb,ap,Np,tup_num,Q,tau) # TIDES
-    sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True)
+    #sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True)
 
     
     #integrate
@@ -111,10 +111,8 @@ def survival(initial):
     #print(f'simulation finished, {len(sim.particles)-2} planets remaining')
    
     # Saving raw survival times
-    #directory_surv = '/mnt/raid-cita/ksmith/CSTE_SUNNY_FINE_LONG/' # TIDES
-    #directory_surv = "/mnt/raid-cita/ksmith/CSTE_SUNNY_CONTROL/" # CONTROL    
-    #np.savetxt(directory_surv+f'SUNNY_LONG_raw_survival_time_eb{eb}_ap{ap}_Q{Q}.npy', surv) # TIDES
-    #np.savetxt(directory_surv+f"SUNNY_CONTROL_raw_survival_times_eb{eb}_ap{ap}.npy", surv) # CONTROL    
+    directory_surv = '/mnt/raid-cita/ksmith/CSTE_SUNNY_FINE_LONG/'    
+    np.savetxt(directory_surv+f'SUNNY_LONG_raw_survival_time_eb{eb}_ap{ap}_Q{Q}.npy', surv)    
     return np.mean(surv)
    
 pool = rb.InterruptiblePool()
