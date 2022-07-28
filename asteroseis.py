@@ -11,7 +11,7 @@ import pickle as pickle
 import bokeh 
 from skimage.transform import rescale, resize
 
-spec_kepler = np.load("/mnt/raid-cita/ksmith/asteroseis.py") 
+spec_kepler = np.load("/mnt/raid-cita/ksmith/spectrum_kepler.npy") 
 
 def create_echelle_diagram(power, freq, dnu, numax, epsilon, min_interval, max_interval):
     """
@@ -64,8 +64,8 @@ for num in range(len(spec_kepler)):
     plt.pcolor(rs, cmap='plasma', vmin=np.min(rs), vmax=np.max(rs))
     plt.axis("off")
 
-    #path_save = "/Users/kanahsmith/Documents/astero/echelle_plasma/" # THIS PATH NEEDS TO CHANGE TO SUNNYVALE CLUSTER
-    #img_name = "KIC_{}.png".format(KIC_ech)
-    #plt.savefig(path_save+img_name, dpi = 200)
-    #plt.close(fig)
+    path_save = "/mnt/raid-cita/ksmith/echelle/"
+    img_name = "KIC_{}.png".format(KIC_ech)
+    plt.savefig(path_save+img_name, dpi = 200)
+    plt.close(fig)
     
