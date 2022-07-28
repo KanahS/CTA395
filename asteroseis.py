@@ -64,7 +64,7 @@ for num in range(len(spec_kepler)):
     plt.pcolor(rs, cmap='plasma', vmin=np.min(rs), vmax=np.max(rs))
     plt.axis("off")
 
-    path_save = "/mnt/raid-cita/ksmith/echelle/"
+    path_save = "/mnt/raid-cita/ksmith/runs/echelle_plasma/"
     img_name = "KIC_{}.png".format(KIC_ech)
     plt.savefig(path_save+img_name, dpi = 200)
     plt.close(fig)
