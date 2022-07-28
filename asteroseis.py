@@ -1,17 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-
-from astropy.io import fits
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd
-import math
 import pickle as pickle 
-import bokeh 
 from skimage.transform import rescale, resize
 
-spec_kepler = np.load("/mnt/raid-cita/ksmith/spectrum_kepler.npy") 
+spec_kepler = np.load("/mnt/raid-cita/ksmith/spectrum_kepler.npy", allow_pickle=True) 
 
 def create_echelle_diagram(power, freq, dnu, numax, epsilon, min_interval, max_interval):
     """

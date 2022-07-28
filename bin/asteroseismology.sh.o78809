@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/fs/lustre/scratch/RAID-CITA/ksmith/runs/asteroseis.py", line 11, in <module>
+    import bokeh 
+ModuleNotFoundError: No module named 'bokeh'
