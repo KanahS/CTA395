@@ -49,7 +49,7 @@ def create_echelle_diagram(power, freq, dnu, numax, epsilon, min_interval, max_i
 
 
 for num in range(len(spec_kepler)):
-    fig = plt.figure(figsize = (15,10))
+    fig = plt.figure()
     
     KIC_ech = spec_kepler[num][0]
     delnu_ech = spec_kepler[num][4]
