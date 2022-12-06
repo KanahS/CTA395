@@ -13,5 +13,5 @@ module load python/3.10.2
 
 #mpirun -np 8 -map-by node:SPAN
 
-python3 class.py
+python3 class_Q2.py
 
