@@ -105,7 +105,7 @@ def survival(initial):
             if d > 20 or d0 < 0.25 or d1 < 0.25 or o.e > 1:
                 surv[num-2] = time
                 sim.remove(num)
-            if sim.N==2:
+            if sim.N<=2:
                 break
     surv[(surv==0)] = time
     
