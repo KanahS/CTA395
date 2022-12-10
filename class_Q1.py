@@ -111,7 +111,7 @@ def survival(initial):
                 surv.append(time)
         if sim.N <= 2:
             break
-    N_ejected = copy(len(surv))
+    N_ejected = len(surv) ########################################################
     surv = np.pad(surv, Np - N_ejected)[Np - N_ejected:]
     surv[(surv==0)] = time
     
