@@ -80,12 +80,16 @@ def survival(initial):
     times = np.linspace(0,N_orbit,N_times)
 
     #array for survival times
-    surv = np.zeros(Np)
+    surv = []
+    nbs = []
+    ebs = []
 
     for i, time in enumerate(times):
 
         nb = ps[1].n
+        nbs.append(nb)
         r_eb = ps[1].e
+        ebs.append(r_eb)
         
         N_re = (1+(15./2.)*r_eb**2+(45./8.)*r_eb**4+(5./16.)*r_eb**6)/(1-r_eb**2)**6
         Omega_re = (1+3*r_eb**2+(3./8.)*r_eb**4)/(1-r_eb**2)**(9./2.)
@@ -103,10 +107,13 @@ def survival(initial):
             d1 = np.sqrt((p.x - p1.x)**2 + (p.y - p1.y)**2)
 
             if d > 20 or d0 < 0.25 or d1 < 0.25 or o.e > 1:
-                surv[num-2] = time
                 sim.remove(num)
-            if sim.N<=2:
-                break
+                surv.append(time)
+        if sim.N<=2:
+            break
+    
+    N_ejected = copy(len(surv))
+    surv = np.pad(surv,Np - N_ejected)[Np - N_ejected:]
     surv[(surv==0)] = time
     
     # Saving raw survival times

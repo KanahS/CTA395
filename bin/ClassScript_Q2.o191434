@@ -1,0 +1,22 @@
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/cita/modules/python/3.10.2/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/cita/modules/python/3.10.2/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/fs/lustre/scratch/RAID-CITA/ksmith/runs/class_Q2.py", line 115, in survival
+    N_ejected = copy(len(surv))
+NameError: name 'copy' is not defined
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/fs/lustre/scratch/RAID-CITA/ksmith/runs/class_Q2.py", line 126, in <module>
+    mapping = pool.map(func= survival, iterable= tup_list)
+  File "/cita/modules/python/3.10.2/lib/python3.10/site-packages/rebound/interruptible_pool.py", line 94, in map
+    return r.get(self.wait_timeout)
+  File "/cita/modules/python/3.10.2/lib/python3.10/multiprocessing/pool.py", line 771, in get
+    raise self._value
+NameError: name 'copy' is not defined
