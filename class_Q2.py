@@ -70,7 +70,7 @@ def survival(initial):
     
     directory_orbit = "/mnt/raid-cita/ksmith/cope/" # COPE
     rebx.save(directory_orbit+f"xarchive_single_Qs{Q}.bin") # COPE  # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
-    filename_orbit = r"eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.bin".format(eb,ap,Np,tup_num,Q,tau) # COPE
+    filename_orbit = r"sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# reb archive # cope
     sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True) # COPE
 
     
@@ -117,17 +117,17 @@ def survival(initial):
     surv[(surv==0)] = time
     
     # Saving raw survival times
-    directory_surv = "/mnt/raid-cita/ksmith/cste/" #CSTE
-    file_surv = "raw_surv_time_Q{:.1f}_eb{:.3f}_ap{:.3f}.npy".format(Q,eb,ap) #CSTE
-    np.savetxt(directory_surv+file_surv, surv) #CSTE
+    #directory_surv = "/mnt/raid-cita/ksmith/cste/" #CSTE
+    #file_surv = "raw_surv_time_Q{:.1f}_eb{:.3f}_ap{:.3f}.npy".format(Q,eb,ap) #CSTE
+    #np.savetxt(directory_surv+file_surv, surv) #CSTE
     return np.mean(surv)
    
 pool = rb.InterruptiblePool(processes=32)
 mapping = pool.map(func= survival, iterable= tup_list)
 
-directory_surv = "/mnt/raid-cita/ksmith/cste/"# CSTE
-npy_surv = f"map_tup{tup_num}plan{Np}_Q{Qex[:]}.npy" # CSTE
-np.savetxt(directory_surv+npy_surv, mapping) # CSTE
+#directory_surv = "/mnt/raid-cita/ksmith/cste/"# CSTE
+#npy_surv = f"map_tup{tup_num}plan{Np}_Q{Qex[:]}.npy" # CSTE
+#np.savetxt(directory_surv+npy_surv, mapping) # CSTE
 
 directory_test = '/mnt/raid-cita/ksmith/'# DONE
 completed = 'The simulation finished!'# DONE
