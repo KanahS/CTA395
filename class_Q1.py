@@ -83,7 +83,7 @@ def survival(initial):
     #array for survival times
     surv = []
     nbs = []
-    ebs = []
+    ebs = []# SAVE ME, ONLY FOR HIGH E's
     #surv = np.zeros(Np) # CHANGE
 
     for i, time in enumerate(times):
@@ -115,11 +115,15 @@ def survival(initial):
     N_ejected = len(surv) ########################################################
     surv = np.pad(surv, Np - N_ejected)[Np - N_ejected:]
     surv[(surv==0)] = time
-    
+   
     # Saving raw survival times
-    directory_surv = "/mnt/raid-cita/ksmith/cste/" #CSTE
-    file_surv = "raw_surv_time_Q{:.1f}_eb{:.3f}_ap{:.3f}.npy".format(Q,eb,ap) #CSTE
-    np.savetxt(directory_surv+file_surv, surv) #CSTE
+    #directory_surv = "/mnt/raid-cita/ksmith/cste/" #CSTE
+    #file_surv = "raw_surv_time_Q{:.1f}_eb{:.3f}_ap{:.3f}.npy".format(Q,eb,ap) #CSTE
+    #np.savetxt(directory_surv+file_surv, surv) #CSTE
+
+    # SAVING BINARY ECCENTRICITIES W/ ebs, should only end up w/ 50 files as ap changes and eb remains the same, so the overwrite each other, don't bother trying to selectively have only 1 file for 1 eb
+    file_ebs = "binary_evolution_initial_ebs{:.3f}.npy".format(eb) # COPE
+    np.savetxt(directory_orbit,file_ebs,ebs)
     
     return np.mean(surv)
    
@@ -127,9 +131,9 @@ pool = rb.InterruptiblePool(processes=32)
 mapping = pool.map(func= survival, iterable= tup_list)
 
 # SAVING MAP
-directory_surv = "/mnt/raid-cita/ksmith/cste/"# CSTE
-npy_surv = f"map_tup{tup_num}plan{Np}_Q{Qex[:]}.npy" # CSTE
-np.savetxt(directory_surv+npy_surv, mapping) # CSTE
+#directory_surv = "/mnt/raid-cita/ksmith/cste/"# CSTE
+#npy_surv = f"map_tup{tup_num}plan{Np}_Q{Qex[:]}.npy" # CSTE
+#np.savetxt(directory_surv+npy_surv, mapping) # CSTE
 
 # FINISH MESSAGE
 directory_test = '/mnt/raid-cita/ksmith/'# DONE
