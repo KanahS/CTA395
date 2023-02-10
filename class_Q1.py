@@ -123,7 +123,7 @@ def survival(initial):
 
     # SAVING BINARY ECCENTRICITIES W/ ebs, should only end up w/ 50 files as ap changes and eb remains the same, so the overwrite each other, don't bother trying to selectively have only 1 file for 1 eb
     file_ebs = "binary_evolution_initial_ebs{:.3f}.npy".format(eb) # COPE
-    np.savetxt(directory_orbit,file_ebs,ebs)
+    np.savetxt(directory_orbit+file_ebs,ebs) # COPE
     
     return np.mean(surv)
    
