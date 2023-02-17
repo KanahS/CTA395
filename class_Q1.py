@@ -46,9 +46,10 @@ def survival(initial):
     sim.particles[1].r = R_star
 
     #initializing Np massless planets
-    for i in range(Np):
+    list1 = np.arange(1,16)
+    for i in list1:
         f_plan = np.random.rand()*2*np.pi
-        sim.add(m=0, a= ap, e=0, f= f_plan, hash = f"Planet {i}") # MOST RECENTLY UPDATED FEB 9TH 2023
+        sim.add(m=0, a= ap, e=0, f= f_plan, hash = f"Planet {i}") # MOST RECENTLY UPDATED FEB 16TH 2023 to iterate over both loops
         
     #array to keep track of survival times
     sim.move_to_com()
