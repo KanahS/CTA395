@@ -68,10 +68,10 @@ def survival(initial):
     else:
         tau = ps[0].params["tctl_tau"] = 3/(2*Q*k2*nb)
     
-    directory_orbit = "/mnt/raid-cita/ksmith/cope/" # COPE
-    rebx.save(directory_orbit+f"xarchive_single_Qs{Q}.bin") # COPE  # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
-    filename_orbit = r"sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# reb archive # cope
-    sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True) # COPE
+    #directory_orbit = "/mnt/raid-cita/ksmith/cope/" # COPE
+    #rebx.save(directory_orbit+f"xarchive_single_Qs{Q}.bin") # COPE  # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
+    #filename_orbit = r"sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# reb archive # cope
+    #sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True) # COPE
 
     
     #integrate
