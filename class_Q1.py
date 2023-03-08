@@ -69,16 +69,17 @@ def survival(initial):
     else:
         tau = ps[0].params["tctl_tau"] = 3/(2*Q*k2*nb)
     
-    #directory_orbit = "/mnt/raid-cita/ksmith/cope/" # COPE
-    #rebx.save(directory_orbit+f"xarchive_single_Qs{Q}.bin")# rebx archive # COPE  # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
+    # SIMULATION ARCHIVE
+    directory_orbit = "/mnt/raid-cita/ksmith/cope/" # COPE
+    rebx.save(directory_orbit+f"xarchive_single_Qs{Q}.bin")# rebx archive # COPE  # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
     #filename_orbit = r"eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.npy".format(eb,ap,Np,tup_num,Q,tau) # COPE
-    #filename_orbit = r"sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# reb archive # cope 
-    #sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True) # COPE
+    filename_orbit = r"sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# reb archive # cope 
+    sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e-2, deletefile=True) # COPE # 1e3
 
     
     #integrate
     N_times = int(10000) 
-    N_orbit = (1e4)*2*np.pi
+    N_orbit = (1e3)*2*np.pi  #(1e4)*2*np.pi
     times = np.linspace(0,N_orbit,N_times)
 
     #array for survival times
