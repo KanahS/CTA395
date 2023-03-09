@@ -68,10 +68,10 @@ def survival(initial):
     else:
         tau = ps[0].params["tctl_tau"] = 3/(2*Q*k2*nb)
     
-    #directory_orbit = "/mnt/raid-cita/ksmith/cope/" # COPE
-    #rebx.save(directory_orbit+f"xarchive_single_Qs{Q}.bin") # COPE  # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
-    #filename_orbit = r"sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap) # COPE
-    #sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True) # COPE
+    directory_orbit = "/mnt/raid-cita/ksmith/cope/" # COPE
+    rebx.save(directory_orbit+f"xarchive_single_Qs{Q}.bin") # COPE  # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
+    filename_orbit = r"sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap) # COPE
+    sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True) # COPE
 
     
     #integrate
@@ -117,7 +117,7 @@ def survival(initial):
     
     # Saving raw survival times
     directory_surv = "/mnt/raid-cita/ksmith/cste/" #CSTE
-    file_surv = "raw_surv_time_Q{:.1f}_eb{:.3f}_ap{:.3f}.npy".format(Q,eb,ap) #CSTE
+    file_surv = r"raw_surv_time_Q{:.1f}_eb{:.3f}_ap{:.3f}.npy".format(Q,eb,ap) #CSTE
     np.savetxt(directory_surv+file_surv, surv) #CSTE
     return np.mean(surv)
    
