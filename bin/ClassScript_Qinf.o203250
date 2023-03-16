@@ -1,0 +1,25 @@
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/cita/modules/python/3.10.2/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/cita/modules/python/3.10.2/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/fs/lustre/scratch/RAID-CITA/ksmith/runs/class_Qinf.py", line 121, in survival
+    np.savetxt(directory_surv+file_surv, surv) #CSTE
+  File "<__array_function__ internals>", line 180, in savetxt
+  File "/cita/modules/python/3.10.2/lib/python3.10/site-packages/numpy/lib/npyio.py", line 1493, in savetxt
+    open(fname, 'wt').close()
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/raid-cita/ksmith/cste/raw_surv_time_Qinf_eb0.033_ap5.000.npy'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/fs/lustre/scratch/RAID-CITA/ksmith/runs/class_Qinf.py", line 125, in <module>
+    mapping = pool.map(func= survival, iterable= tup_list)
+  File "/cita/modules/python/3.10.2/lib/python3.10/site-packages/rebound/interruptible_pool.py", line 94, in map
+    return r.get(self.wait_timeout)
+  File "/cita/modules/python/3.10.2/lib/python3.10/multiprocessing/pool.py", line 771, in get
+    raise self._value
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/raid-cita/ksmith/cste/raw_surv_time_Qinf_eb0.033_ap5.000.npy'
