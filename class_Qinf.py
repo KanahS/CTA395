@@ -116,13 +116,14 @@ def survival(initial):
     surv[(surv==0)] = time
     
     # Saving raw survival times
+    #directory_surv = "/mnt/raid-cita/ksmith/testing_qinf_surv_times/" # cste TROUBLESHOOTING
     directory_surv = "/mnt/raid-cita/ksmith/cste/" #cste
     file_surv = r"raw_surv_time_Q{:.1f}_eb{:.3f}_ap{:.3f}.npy".format(Q,eb,ap) #cste
     #print(file_surv)
     np.save(directory_surv+file_surv, surv) #cste
     return np.mean(surv)
    
-pool = rb.InterruptiblePool(processes=1)   #(processes=32)
+pool = rb.InterruptiblePool(processes=32)
 mapping = pool.map(func= survival, iterable= tup_list)
 
 directory_surv = "/mnt/raid-cita/ksmith/cste/"# CSTE
@@ -131,5 +132,5 @@ np.save(directory_surv+npy_surv, mapping) # CSTE
 
 directory_test = '/mnt/raid-cita/ksmith/'# DONE
 completed = 'The simulation finished!'# DONE
-name = 'map_Qinf_DONE' # DONE
+name = 'Qinf_DONE' # DONE
 np.save(directory_test+name, completed) # DONE
