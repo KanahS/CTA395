@@ -8,8 +8,8 @@ import rebound as rb
 import reboundx as rx
 
 tup_num = 50   
-e_b = np.linspace(0, 0.8, tup_num)  #0.473
-a_p = np.linspace(1, 5, tup_num)  #5
+e_b = [0.473]
+a_p = [5]
 Np = 15
 
 Qex = []
@@ -70,7 +70,7 @@ def survival(initial):
         tau = ps[0].params["tctl_tau"] = 3/(2*Q*k2*nb)
     
     # SIMULATION ARCHIVE ###filename_orbit = r"eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.npy".format(eb,ap,Np,tup_num,Q,tau) # COPE
-    directory_orbit = "/mnt/raid-cita/ksmith/cope/" # cope
+    #directory_orbit = "/mnt/raid-cita/ksmith/cope/" # cope
     directory_orbit_high = "/mnt/raid-cita/ksmith/cope_high-timestep/" # cope_high-timestep
     rebx.save(directory_orbit_high+f"xarchive_single_Qs{Q}.bin")# rebx archive # COPE  # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
     filename_orbit = r"sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# reb archive # cope 
@@ -119,12 +119,13 @@ def survival(initial):
     surv[(surv==0)] = time
    
     # SAVING RAW SURVIVAL TIMES
-    directory_surv = "/mnt/raid-cita/ksmith/cste_Q1/" #cste
+    #directory_surv = "/mnt/raid-cita/ksmith/cste_Q1/" #cste
     directory_high = "/mnt/raid-cita/ksmith/cste_high-timestep/" # cste_high-timestep
     file_surv = r"raw_surv_time_Q{:.1f}_eb{:.3f}_ap{:.3f}.npy".format(Q,eb,ap) #cste
     np.save(directory_high+file_surv, surv) #cste # CHANGE FROM BEING suvr OR high
 
     # SAVING BINARY ECCENTRICITIES W/ ebs, should only end up w/ 50 files as ap changes and eb remains the same, so the overwrite each other, don't bother trying to selectively have only 1 file for 1 eb
+    ## DONT THINK I NEED THESE, CAN'T REMEBER (march 20th, 2023)
     #file_ebs = r"binary_evolution-initial_ebs{:.3f}_Q{Q}.npy".format(eb,Q) # cope
     #np.save("/mnt/raid-cita/ksmith/cope/"+file_ebs,ebs) # cope
     
@@ -141,6 +142,6 @@ mapping = pool.map(func= survival, iterable= tup_list)
 # FINISH MESSAGE
 directory_test = '/mnt/raid-cita/ksmith/'# DONE
 completed = 'The simulation finished!'# DONE
-name1 = 'Q1_DONE' # DONE
+#name1 = 'Q1_DONE' # DONE
 name2 = "Q1_high-time-step_DONE"
 np.save(directory_test+name2, completed) # DONE
