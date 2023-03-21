@@ -8,8 +8,8 @@ import rebound as rb
 import reboundx as rx
 
 tup_num = 50   
-e_b = [0.473]  #np.linspace(0, 0.8, tup_num)
-a_p = [5]  #np.linspace(1, 5, tup_num)
+e_b = np.linspace(0, 0.8, tup_num)  #0.473
+a_p = np.linspace(1, 5, tup_num)  #5
 Np = 15
 
 Qex = []
@@ -72,14 +72,14 @@ def survival(initial):
     # SIMULATION ARCHIVE ###filename_orbit = r"eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.npy".format(eb,ap,Np,tup_num,Q,tau) # COPE
     #directory_orbit = "/mnt/raid-cita/ksmith/cope/" # cope
     directory_orbit = "/mnt/raid-cita/ksmith/cope_high-timestep/" # cope_high-timestep
-    rebx.save(directory_orbit+f"xarchive_single_Qs{Q}.bin")# rebx archive # COPE  # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
-    filename_orbit = r"sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# reb archive # cope 
-    sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e-2, deletefile=True) # COPE # for the old stuff do interval = 1e-3, for the new stuff do interval = 1e-2
+    #rebx.save(directory_orbit+f"xarchive_single_Qs{Q}.bin")# rebx archive # COPE  # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
+    #filename_orbit = r"sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# reb archive # cope 
+    #sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e-2, deletefile=True) # COPE # for the old stuff do interval = 1e-3, for the new stuff do interval = 1e-2
 
     
     #integrate
     N_times = int(10000) 
-    N_orbit = (1e3)*2*np.pi  #(1e4)*2*np.pi for the regular stuff # for the new stuff, do (1e3)*2*np.pi
+    N_orbit = (1e4)*2*np.pi  #(1e4)*2*np.pi for the regular stuff # for the new stuff, do (1e3)*2*np.pi
     times = np.linspace(0,N_orbit,N_times)
 
     #array for survival times
@@ -119,14 +119,14 @@ def survival(initial):
     surv[(surv==0)] = time
    
     # SAVING RAW SURVIVAL TIMES
-    #directory_surv = "/mnt/raid-cita/ksmith/cste/" #cste
-    directory_surv = "/mnt/raid-cita/ksmith/cste_high-timestep/" # cste_high-timestep
+    directory_surv = "/mnt/raid-cita/ksmith/cste_Q1/" #cste
+    #directory_surv = "/mnt/raid-cita/ksmith/cste_high-timestep/" # cste_high-timestep
     file_surv = r"raw_surv_time_Q{:.1f}_eb{:.3f}_ap{:.3f}.npy".format(Q,eb,ap) #cste
-    np.savetxt(directory_surv+file_surv, surv) #cste
+    np.save(directory_surv+file_surv, surv) #cste
 
     # SAVING BINARY ECCENTRICITIES W/ ebs, should only end up w/ 50 files as ap changes and eb remains the same, so the overwrite each other, don't bother trying to selectively have only 1 file for 1 eb
-    file_ebs = r"binary_evolution-initial_ebs{:.3f}_Q{Q}.npy".format(eb,Q) # cope
-    np.savetxt("/mnt/raid-cita/ksmith/cope/"+file_ebs,ebs) # cope
+    #file_ebs = r"binary_evolution-initial_ebs{:.3f}_Q{Q}.npy".format(eb,Q) # cope
+    #np.save("/mnt/raid-cita/ksmith/cope/"+file_ebs,ebs) # cope
     
     return np.mean(surv)
    
@@ -134,12 +134,12 @@ pool = rb.InterruptiblePool(processes=32)
 mapping = pool.map(func= survival, iterable= tup_list)
 
 # SAVING MAP
-directory_surv = "/mnt/raid-cita/ksmith/cste/"# CSTE
+directory_map = "/mnt/raid-cita/ksmith/all_Q_colour_maps/"# CSTE
 npy_surv = f"map_tup{tup_num}plan{Np}_Q{Qex[:]}.npy" # CSTE
-np.savetxt(directory_surv+npy_surv, mapping) # CSTE
+np.save(directory_map+npy_surv, mapping) # CSTE
 
 # FINISH MESSAGE
 directory_test = '/mnt/raid-cita/ksmith/'# DONE
 completed = 'The simulation finished!'# DONE
-name = 'map_Q1_DONE' # DONE
+name = 'Q1_DONE' # DONE
 np.save(directory_test+name, completed) # DONE
