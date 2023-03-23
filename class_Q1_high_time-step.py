@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 import rebound as rb
 import reboundx as rx
 
-tup_num = 50   
-e_b = [0.473]
-a_p = [5]
+tup_num = 50   # eb = 0.702 and ap = 2.878
+e_b = [0.702]
+a_p = [2.878]
 Np = 15
 
 Qex = []
