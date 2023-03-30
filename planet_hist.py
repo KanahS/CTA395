@@ -34,7 +34,8 @@ def planet_hist(sim_arch_directory, xarch):
         ap_i = a_hist[num]
         # mu = 0.5
         a_c = 1.6 + 5.1*eb_i + (- 2.22*(eb_i**2)) + 4.12*0.5 + (- 4.27*eb_i*0.5) + (- 5.09*(0.5**2)) + 4.61*(eb_i**2)*(0.5**2)
-    
+        
+        archive = None
         archive = hist_sim_arch_directory + f"sim_archive_Q10.0_eb{e_string[num]}_ap{a_string[num]}.npy"
         if ap_i <= a_c:
             sim = None
