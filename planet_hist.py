@@ -42,7 +42,7 @@ def planet_hist(sim_arch_directory, xarch):
         
             for planet in range(2,17):
                 if len(sim) == last_snapshot: # last snap that there should be for all full length simulations 
-                    a_initial = sim[final_snapshot][0].particles[planet].a
+                    a_initial = sim[first_snapshot][0].particles[planet].a
                     a_final = sim[last_snapshot][0].particles[planet].a
                     a_final_minus_initial = a_final - a_initial
                     ap_fmi.append(a_final_minus_initial)
