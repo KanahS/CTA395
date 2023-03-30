@@ -51,7 +51,7 @@ def planet_hist(sim_arch_directory, xarch):
                         e_final = sim[62][0].particles[planet].e
                         ep_final.append(e_final)
                     
-                    except IndexError:
+                    except:
                         continue
 
     np.save("/mnt/raid-cita/ksmith/planet_hist_ep_final.npy", ep_final)
