@@ -57,7 +57,8 @@ high_sim_arch = f"/mnt/raid-cita/ksmith/cope_high-timestep/sim_archive_Q10.0_eb{
 high_xarch = "/mnt/raid-cita/ksmith/cope_high-timestep/xarchive_single_Qs10.bin"
 
 # binary stuff
-high_sys_evolution = system_evolution(high_sim_arch, high_xarch)
+#high_sys_evolution = system_evolution(high_sim_arch, high_xarch)
+system_evolution(high_sim_arch, high_xarch)
 #high_sys_binaries = "/mnt/raid-cita/ksmith/"
 #np.save(high_sys_binaries+"high_sim_planets.npy.npy", high_sys_evolution) 
 
@@ -110,5 +111,6 @@ def planet_evolution(archive, extras):
 high_sim_cste = f"/mnt/raid-cita/ksmith/cste_high-timestep/raw_surv_time_Q10.0_eb{e_val}_ap{a_val}.npy"
 
 # planetary stuff
-plan = planet_evolution(high_sim_cste, high_xarch)
+#plan = planet_evolution(high_sim_cste, high_xarch)
 #np.save(high_sim_planets+"high_sim_planets.npy", plan)
+planet_evolution(high_sim_cste, high_xarch)
