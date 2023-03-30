@@ -42,13 +42,18 @@ def planet_hist(sim_arch_directory, xarch):
         
             for planet in range(2,17):
                 if len(sim) == last_snapshot: # last snap that there should be for all full length simulations 
-                    a_initial = sim[first_snapshot][0].particles[planet].a
-                    a_final = sim[last_snapshot][0].particles[planet].a
-                    a_final_minus_initial = a_final - a_initial
-                    ap_fmi.append(a_final_minus_initial)
+                    try:
+                        a_initial = sim[0][0].particles[planet].a
+                        a_final = sim[62][0].particles[planet].a
+                        a_final_minus_initial = a_final - a_initial
+                        ap_fmi.append(a_final_minus_initial)
                 
-                    e_final = sim[last_snapshot][0].particles[planet].e
-                    ep_final.append(e_final)
+                        e_final = sim[62][0].particles[planet].e
+                        ep_final.append(e_final)
+                    
+                    except IndexError:
+                        continue
+
     np.save("/mnt/raid-cita/ksmith/planet_hist_ep_final.npy", ep_final)
     np.save("/mnt/raid-cita/ksmith/planet_hist_ap_fmi.npy", ap_fmi)
 
