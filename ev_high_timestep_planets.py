@@ -25,8 +25,8 @@ def planet_evolution(archive, extras):
         a = []
         e = []
         t = []
-        #for snap in range(len(sim)):
-        for snap in range(1):    
+        for snap in range(len(sim)):
+        #for snap in range(50000):    
             try:
                 base = sim[snap][0]
                 time = base.t
@@ -47,10 +47,10 @@ def planet_evolution(archive, extras):
         planet_ecc.append(e)
         sim_time.append(t)
     
-    np.save("/mnt/raid-cita/ksmith/cope_high-timestep/"+f"sim_length_is_{len(sim)}", len(sim))
-    np.save("/mnt/raid-cita/ksmith/cope_high-timestep/"+"sim_time.npy", sim_time)
-    np.save("/mnt/raid-cita/ksmith/cope_high-timestep/"+"planet_semi.npy", planet_semi)
-    np.save("/mnt/raid-cita/ksmith/cope_high-timestep/"+"planet_ecc.npy", planet_ecc)
+    #np.save("/mnt/raid-cita/ksmith/cope_high-timestep/"+f"sim_length_is_{len(sim)}", len(sim))
+    np.save("/mnt/raid-cita/ksmith/cope_high-timestep/"+"sim_time_full.npy", sim_time)
+    np.save("/mnt/raid-cita/ksmith/cope_high-timestep/"+"planet_semi_full.npy", planet_semi)
+    np.save("/mnt/raid-cita/ksmith/cope_high-timestep/"+"planet_ecc_full.npy", planet_ecc)
 
     #return sim_time, planet_semi, planet_ecc 
 
