@@ -55,11 +55,11 @@ def planet_evolution(archive, extras):
     #return sim_time, planet_semi, planet_ecc 
 
 
-high_sim_cste = f"/mnt/raid-cita/ksmith/cste_high-timestep/raw_surv_time_Q10.0_eb{e_val}_ap{a_val}.npy"
+high_sim_cope = f"/mnt/raid-cita/ksmith/cope_high-timestep/sim_archive_Q10.0_eb{e_val}_ap{a_val}.bin"
 high_xarch = "/mnt/raid-cita/ksmith/cope_high-timestep/xarchive_single_Qs10.bin"
 
 # planetary stuff
 #plan = planet_evolution(high_sim_cste, high_xarch)
 # np.save(high_sim_planets+"high_sim_planets.npy", plan)
-planet_evolution(high_sim_cste, high_xarch)
+planet_evolution(high_sim_cope, high_xarch)
 
