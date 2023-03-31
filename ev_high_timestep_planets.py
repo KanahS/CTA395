@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 e_val = 0.702 # INITIAL PLANETARY SEMI-MAJOR AXIS UNDER EVALUATION
 a_val = 2.878 # INITIAL BINARY ECCENTRICITY UNDER EVALUATION
 
-high_xarch = "/mnt/raid-cita/ksmith/cope_high-timestep/xarchive_single_Qs10.bin"
+#high_xarch = "/mnt/raid-cita/ksmith/cope_high-timestep/xarchive_single_Qs10.bin"
 
 def planet_evolution(archive, extras):
 
@@ -26,7 +26,7 @@ def planet_evolution(archive, extras):
         e = []
         t = []
         #for snap in range(len(sim)):
-        for snap in range(2):    
+        for snap in range(1):    
             try:
                 base = sim[snap][0]
                 time = base.t
@@ -47,15 +47,16 @@ def planet_evolution(archive, extras):
         planet_ecc.append(e)
         sim_time.append(t)
     
-    np.save(high_dir_cope+f"sim_length_is_{len(sim)}", len(sim))
-    np.save(high_dir_cope+"sim_time.npy", sim_time)
-    np.save(high_dir_cope+"planet_semi.npy", planet_semi)
-    np.save(high_dir_cope+"planet_ecc.npy", planet_ecc)
+    np.save("/mnt/raid-cita/ksmith/cope_high-timestep/"+f"sim_length_is_{len(sim)}", len(sim))
+    np.save("/mnt/raid-cita/ksmith/cope_high-timestep/"+"sim_time.npy", sim_time)
+    np.save("/mnt/raid-cita/ksmith/cope_high-timestep/"+"planet_semi.npy", planet_semi)
+    np.save("/mnt/raid-cita/ksmith/cope_high-timestep/"+"planet_ecc.npy", planet_ecc)
 
     #return sim_time, planet_semi, planet_ecc 
 
 
 high_sim_cste = f"/mnt/raid-cita/ksmith/cste_high-timestep/raw_surv_time_Q10.0_eb{e_val}_ap{a_val}.npy"
+high_xarch = "/mnt/raid-cita/ksmith/cope_high-timestep/xarchive_single_Qs10.bin"
 
 # planetary stuff
 #plan = planet_evolution(high_sim_cste, high_xarch)
