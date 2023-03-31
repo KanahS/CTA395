@@ -26,7 +26,7 @@ def planet_evolution(archive, extras):
         e = []
         t = []
         #for snap in range(len(sim)):
-        for snap in range(len(2)):    
+        for snap in range(2):    
             try:
                 base = sim[snap][0]
                 time = base.t
