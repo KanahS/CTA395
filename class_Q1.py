@@ -46,8 +46,7 @@ def survival(initial):
     sim.particles[1].r = R_star
 
     #initializing Np massless planets
-    list1 = np.arange(1,16)
-    for i in list1:
+    for i in range(1, Np+1):
         f_plan = np.random.rand()*2*np.pi
         sim.add(m=0, a= ap, e=0, f= f_plan, hash = f"Planet {i}") # MOST RECENTLY UPDATED FEB 16TH 2023 to iterate over both loops
         
@@ -74,12 +73,12 @@ def survival(initial):
     directory_orbit_high = "/mnt/raid-cita/ksmith/cope_high-timestep/" # cope_high-timestep
     rebx.save(directory_orbit_high+f"xarchive_single_Qs{Q}.bin")# rebx archive # COPE  # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
     filename_orbit = r"sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# reb archive # cope 
-    sim.automateSimulationArchive(directory_orbit_high+filename_orbit, interval=1e-2, deletefile=True) # COPE # for the old stuff do interval = 1e-3, for the new stuff do interval = 1e-2
+    sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e-3, deletefile=True) # COPE # for the old stuff do interval = 1e-3, for the new stuff do interval = 1e-2
 
     
     #integrate
     N_times = int(10000) 
-    N_orbit = (1e3)*2*np.pi  #(1e4)*2*np.pi for the regular stuff # for the new stuff, do (1e3)*2*np.pi
+    N_orbit = (1e4)*2*np.pi  #(1e4)*2*np.pi for the regular stuff # for the new stuff, do (1e3)*2*np.pi
     times = np.linspace(0,N_orbit,N_times)
 
     #array for survival times
@@ -119,10 +118,10 @@ def survival(initial):
     surv[(surv==0)] = time
    
     # SAVING RAW SURVIVAL TIMES
-    directory_surv = "/mnt/raid-cita/ksmith/cste_Q1/" #cste
-    directory_high = "/mnt/raid-cita/ksmith/cste_high-timestep/" # cste_high-timestep
-    file_surv = r"raw_surv_time_Q{:.1f}_eb{:.3f}_ap{:.3f}.npy".format(Q,eb,ap) #cste
-    np.save(directory_high+file_surv, surv) #cste # CHANGE FROM BEING suvr OR high
+    #directory_surv = "/mnt/raid-cita/ksmith/cste_Q1/" #cste
+    #directory_high = "/mnt/raid-cita/ksmith/cste_high-timestep/" # cste_high-timestep
+    #file_surv = r"raw_surv_time_Q{:.1f}_eb{:.3f}_ap{:.3f}.npy".format(Q,eb,ap) #cste
+    #np.save(directory_high+file_surv, surv) #cste # CHANGE FROM BEING suvr OR high
 
     # SAVING BINARY ECCENTRICITIES W/ ebs, should only end up w/ 50 files as ap changes and eb remains the same, so the overwrite each other, don't bother trying to selectively have only 1 file for 1 eb
     #file_ebs = r"binary_evolution-initial_ebs{:.3f}_Q{Q}.npy".format(eb,Q) # cope
@@ -143,4 +142,4 @@ directory_test = '/mnt/raid-cita/ksmith/'# DONE
 completed = 'The simulation finished!'# DONE
 name1 = 'Q1_DONE' # DONE
 name2 = "Q1_high-time-step_DONE"
-np.save(directory_test+name2, completed) # DONE
+np.save(directory_test+name1, completed) # DONE
