@@ -8,8 +8,8 @@ import rebound as rb
 import reboundx as rx
 
 tup_num = 50   
-e_b = np.linspace(0, 0.8, tup_num)
-a_p = np.linspace(1, 5, tup_num)
+e_b = 0.702 #np.linspace(0, 0.8, tup_num)
+a_p = 2.878 #np.linspace(1, 5, tup_num)
 Np = 15
 
 Qex = []
@@ -70,10 +70,9 @@ def survival(initial):
     
     # SIMULATION ARCHIVE ###filename_orbit = r"eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.npy".format(eb,ap,Np,tup_num,Q,tau) # COPE
     directory_orbit = "/mnt/raid-cita/ksmith/cope/" # cope
-    directory_orbit_high = "/mnt/raid-cita/ksmith/cope_high-timestep/" # cope_high-timestep
-    rebx.save(directory_orbit_high+f"xarchive_single_Qs{Q}.bin")# reboundx archive # cope 
+    rebx.save(directory_orbit+f"xarchive_eb{eb}_ap{ap}_single_Qs{Q}.bin")  #f"xarchive_single_Qs{Q}.bin"# reboundx archive # cope 
     filename_orbit = r"sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# rebound archive # cope 
-    sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e-3, deletefile=True) # cope 
+    #sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e-3, deletefile=True) # cope 
 
     
     #integrate
@@ -141,5 +140,4 @@ mapping = pool.map(func= survival, iterable= tup_list)
 directory_test = '/mnt/raid-cita/ksmith/'# DONE
 completed = 'The simulation finished!'# DONE
 name1 = 'Q1_DONE' # DONE
-name2 = "Q1_high-time-step_DONE"
 np.save(directory_test+name1, completed) # DONE
