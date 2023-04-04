@@ -8,8 +8,8 @@ import rebound as rb
 import reboundx as rx
 
 tup_num = 50   
-e_b = 0.702 #np.linspace(0, 0.8, tup_num)
-a_p = 2.878 #np.linspace(1, 5, tup_num)
+e_b = [0.702] #np.linspace(0, 0.8, tup_num)
+a_p =[2.878] #np.linspace(1, 5, tup_num)
 Np = 15
 
 Qex = []
