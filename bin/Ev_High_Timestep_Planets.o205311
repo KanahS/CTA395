@@ -1,4 +1,0 @@
-/cita/modules/python/3.10.2/lib/python3.10/site-packages/rebound/simulationarchive.py:146: RuntimeWarning: You have to reset function pointers after creating a reb_simulation struct with a binary file.
-  warnings.warn(message, RuntimeWarning)
-/cita/modules/python/3.10.2/lib/python3.10/site-packages/numpy/lib/npyio.py:501: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray.
-  arr = np.asanyarray(arr)

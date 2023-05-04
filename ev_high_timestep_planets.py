@@ -7,8 +7,8 @@ import reboundx as rx
 import matplotlib.pyplot as plt
 
 
-e_val = 0.702 # INITIAL PLANETARY SEMI-MAJOR AXIS UNDER EVALUATION
-a_val = 2.878 # INITIAL BINARY ECCENTRICITY UNDER EVALUATION
+e_val = [0.702] # INITIAL PLANETARY SEMI-MAJOR AXIS UNDER EVALUATION
+a_val = [2.878] # INITIAL BINARY ECCENTRICITY UNDER EVALUATION
 
 #high_xarch = "/mnt/raid-cita/ksmith/cope_high-timestep/xarchive_single_Qs10.bin"
 
