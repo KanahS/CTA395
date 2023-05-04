@@ -46,10 +46,25 @@ def survival(initial):
     sim.particles[1].r = R_star
 
     #initializing Np massless planets
-    for i in range(1, Np+1):
-        f_plan = np.random.rand()*2*np.pi
-        sim.add(m=0, a= ap, e=0, f= f_plan, hash = f"Planet {i}") # change to P# to reduce storage space
-        
+    #for i in range(1, Np+1):
+        #f_plan = np.random.rand()*2*np.pi    
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 1") # change to P# to reduce storage space
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 2")
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 3")
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 4")
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 5")
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 6")
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 7")
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 8")
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 9")
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 10")
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 11")
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 12")
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 13")
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 14")
+    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 15")
+
+
     #array to keep track of survival times
     sim.move_to_com()
 
@@ -70,8 +85,8 @@ def survival(initial):
     
     # SIMULATION ARCHIVE ###filename_orbit = r"eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.npy".format(eb,ap,Np,tup_num,Q,tau) # COPE
     directory_orbit = "/mnt/raid-cita/ksmith/cope/" # cope
-    rebx.save(directory_orbit+f"test_xarchive_eb{eb}_ap{ap}_single_Qs{Q}.bin")  #f"xarchive_single_Qs{Q}.bin"# reboundx archive # cope 
-    filename_orbit = r"test_sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# rebound archive # cope 
+    rebx.save(directory_orbit+f"test_indiv_planet_xarchive_eb{eb}_ap{ap}_single_Qs{Q}.bin")  #f"xarchive_single_Qs{Q}.bin"# reboundx archive # cope 
+    filename_orbit = r"test_indiv_planet_sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# rebound archive # cope 
     sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e-3, deletefile=True) # cope 
 
     
@@ -138,5 +153,5 @@ mapping = pool.map(func= survival, iterable= tup_list)
 # FINISH MESSAGE
 directory_test = '/mnt/raid-cita/ksmith/'# DONE
 completed = 'The simulation finished!'# DONE
-name1 = 'TEST_Q1_DONE' # DONE
+name1 = 'INDIVIDUAL_TEST_Q1_DONE' # DONE
 np.save(directory_test+name1, completed) # DONE
