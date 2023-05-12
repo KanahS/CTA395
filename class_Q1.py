@@ -46,9 +46,9 @@ def survival(initial):
     sim.particles[1].r = R_star
 
     #initializing Np massless planets
-    #for i in range(1, Np+1):
+    for i in range(1, Np+1):
         #f_plan = np.random.rand()*2*np.pi    
-    sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi)#, hash = "Planet 1") # change to P# to reduce storage space
+        sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = f"Planet {i}") # change to P# to reduce storage space
     #sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 2")
     #sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 3")
     #sim.add(m=0, a= ap, e=0, f= np.random.rand()*2*np.pi, hash = "Planet 4")
@@ -84,11 +84,11 @@ def survival(initial):
         tau = ps[0].params["tctl_tau"] = 3/(2*Q*k2*nb)
     
     # SIMULATION ARCHIVE ###filename_orbit = r"eb{:.3f}_ap{:.3f}_Np{:.1f}_tup{:.1f}_Q{:.1f}_tau{:.4f}.npy".format(eb,ap,Np,tup_num,Q,tau) # COPE
-    directory_orbit = "/mnt/raid-cita/ksmith/cope/" # cope
-    rebx.save(directory_orbit+f"test_one_planet_no-hash_xarchive_eb{eb}_ap{ap}_single_Qs{Q}.bin")  #f"xarchive_single_Qs{Q}.bin"# reboundx archive # cope 
-    filename_orbit = r"test_one_planet_no-hash_sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# rebound archive # cope 
-    sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e-3, deletefile=True) # cope 
-
+    directory_orbit = "/mnt/raid-cita/ksmith/hash_test_files/" # cope
+    rebx.save(directory_orbit+f"test_for-loop-fplan_planet_hash_xarchive_eb{eb}_ap{ap}_single_Qs{Q}.bin")  #f"xarchive_single_Qs{Q}.bin"# reboundx archive # cope 
+    filename_orbit = r"test_for-loop-fplan_planet_hash_sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# rebound archive # cope 
+    sim.automateSimulationArchive(directory_orbit+filename_orbit, interval=1e3, deletefile=True) # cope 
+                                                                  #************** was 1e-3 for some reason  
     
     #integrate
     N_times = int(10000) 
@@ -153,5 +153,5 @@ mapping = pool.map(func= survival, iterable= tup_list)
 # FINISH MESSAGE
 directory_test = '/mnt/raid-cita/ksmith/'# DONE
 completed = 'The simulation finished!'# DONE
-name1 = 'ONE_NO-HASH_TEST_Q1_DONE' # DONE
+name1 = "FOR-LOOP-FPLAN-PLANET-HASH-TEST_Q1_DONE" # DONE
 np.save(directory_test+name1, completed) # DONE
