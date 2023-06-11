@@ -69,8 +69,8 @@ def collect_particle_orbital_params(archive):
     
     sim_archive = rb.SimulationArchive(archive) # using to get number of snapshots
     snap_num = np.arange(len(sim_archive)) # number of snapshots to iterate trhough
-    
-    for snap in range(len(snap_num)):
+                              # for the high-timestep sims, take in the first 10,000, 50,000 or 100,000 snapshots
+    for snap in range(10000): # for a non-high-timestep simulation, make this len(snap_num)
         sim = None 
         sim = rb.Simulation(archive, snapshot=snap) 
 
