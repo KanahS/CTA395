@@ -96,6 +96,6 @@ high_time_step_collection = collect_particle_orbital_params("/mnt/raid-cita/ksmi
 dictionary_directory = "/mnt/raid-cita/ksmith/sim_dictionaries/"
 
 # SAVE THE DIRECTIONARY
-np.save(dictionary_directory+"high_time_step_dict_Q10_eb0.702_ap2.878.npy", high_time_step_collection)
+np.save(dictionary_directory+"high_time_step_10k_snaps_dict_Q10_eb0.702_ap2.878.npy", high_time_step_collection)
 
-np.save("/mnt/raid-cita/ksmith/DICT_DONE.npy", "DICTIONARY COLLECTION DONE")
+np.save("/mnt/raid-cita/ksmith/10k_DICT_DONE.npy", "DICTIONARY COLLECTION DONE")
