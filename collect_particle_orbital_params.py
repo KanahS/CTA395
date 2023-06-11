@@ -93,7 +93,7 @@ def collect_particle_orbital_params(archive):
     return particle_evolution_dict
 
 #Q1_high_time_step_collection = collect_particle_orbital_params("/mnt/raid-cita/ksmith/cope_high-timestep/sim_archive_Q10.0_eb0.702_ap2.878.bin")
-Qinf_high_time_step_collection = collect_particle_orbital_params("/mnt/raid-cita/ksmith/cope_high_timestep_sim_archive_Qinf_eb0.702_ap2.878.bin")
+Qinf_high_time_step_collection = collect_particle_orbital_params("/mnt/raid-cita/ksmith/cope_high-timestep/cope_high_timestep_sim_archive_Qinf_eb0.702_ap2.878.bin")
 dictionary_directory = "/mnt/raid-cita/ksmith/sim_dictionaries/"
 
 # SAVE THE DIRECTIONARY
