@@ -98,7 +98,7 @@ dictionary_directory = "/mnt/raid-cita/ksmith/sim_dictionaries/"
 
 # SAVE THE DIRECTIONARY
 #np.save(dictionary_directory+"high_time_step_10k_snaps_dict_Q10_eb0.702_ap2.878.npy", Q1_high_time_step_collection)
-np.save(dictionary_directory+"high_time_step_10k_snaps_dict_Qinf_eb0.702_qp2.878.npy", Qinf_high_time_step_collection)
+np.save(dictionary_directory+"high_time_step_10k_snaps_dict_Qinf_eb0.702_ap2.878.npy", Qinf_high_time_step_collection)
 
 #np.save("/mnt/raid-cita/ksmith/Q1_10k_DICT_DONE.npy", "DICTIONARY COLLECTION DONE")
 np.save("/mnt/raid-cita/ksmith/Qinf_10k_DICT_DONE.npy", "DICTIONARY COLLECTION DONE!")
