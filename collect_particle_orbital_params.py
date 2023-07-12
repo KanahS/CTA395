@@ -93,12 +93,22 @@ def collect_particle_orbital_params(archive):
     return particle_evolution_dict
 
 #Q1_high_time_step_collection = collect_particle_orbital_params("/mnt/raid-cita/ksmith/cope_high-timestep/sim_archive_Q10.0_eb0.702_ap2.878.bin")
-Qinf_high_time_step_collection = collect_particle_orbital_params("/mnt/raid-cita/ksmith/cope_high-timestep/cope_high_timestep_sim_archive_Qinf_eb0.702_ap2.878.bin")
+#Qinf_high_time_step_collection = collect_particle_orbital_params("/mnt/raid-cita/ksmith/cope_high-timestep/cope_high_timestep_sim_archive_Qinf_eb0.702_ap2.878.bin")
+
+#Q1_high_time_step_f10_collection = ("/mnt/raid-cita/ksmith/cope_high-timestep_f10_longer/high_time-step_f10_longer_sim_archive_Q10.0_eb0.702_ap2.878.bin")
+Qinf_high_time_step_f10_collection = collect_particle_orbital_params("/mnt/raid-cita/ksmith/cope_high-timestep_f10_longer/high_time-step_f10_longer_sim_archive_Qinf_eb0.702_ap2.878.bin")
+
 dictionary_directory = "/mnt/raid-cita/ksmith/sim_dictionaries/"
 
 # SAVE THE DIRECTIONARY
 #np.save(dictionary_directory+"high_time_step_10k_snaps_dict_Q10_eb0.702_ap2.878.npy", Q1_high_time_step_collection)
-np.save(dictionary_directory+"high_time_step_10k_snaps_dict_Qinf_eb0.702_ap2.878.npy", Qinf_high_time_step_collection)
+#np.save(dictionary_directory+"high_time_step_10k_snaps_dict_Qinf_eb0.702_ap2.878.npy", Qinf_high_time_step_collection)
+
+np.save(dictionary_directory+"high_time_step_f10_10k_snaps_dict_Qinf_eb0.702_ap2.878.npy", Qinf_high_time_step_f10_collection)
+#np.save(dictionary_directory+"high_time_step_f10_10k_snaps_dict_Qinf_eb0.702_ap2.878.npy", Q1_high_time_step_f10_collection)
 
 #np.save("/mnt/raid-cita/ksmith/Q1_10k_DICT_DONE.npy", "DICTIONARY COLLECTION DONE")
-np.save("/mnt/raid-cita/ksmith/Qinf_10k_DICT_DONE.npy", "DICTIONARY COLLECTION DONE!")
+#np.save("/mnt/raid-cita/ksmith/Qinf_10k_DICT_DONE.npy", "DICTIONARY COLLECTION DONE!")
+
+np.save("/mnt/raid-cita/ksmith/Qinf_10_f10_DICT_DONE.npy", "DICTIONARY COLLECTION DONE")
+#np.save("/mnt/raid-cita/ksmith/Q1_10_f10_DICT_DONE.npy", "DICTIONARY COLLECTION DONE")
