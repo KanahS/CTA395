@@ -73,7 +73,7 @@ def survival(initial):
     directory_orbit_high = "/mnt/raid-cita/ksmith/cope_high-timestep_f10_longer/" # cope_high-timestep
     rebx.save(directory_orbit_high+f"high_time-step_f10_longer_xarchive_single_Qs{Q}.bin")# rebx archive # COPE  # TURN BACK ON IF RUNNING ANOTHER SIM FOR DIFFERENT Q VALUES OR OTHER CHANGES
     filename_orbit = r"high_time-step_f10_longer_sim_archive_Q{:.1f}_eb{:.3f}_ap{:.3f}.bin".format(Q,eb,ap)# reb archive # cope 
-    sim.automateSimulationArchive(directory_orbit_high+filename_orbit, interval=1e-3, deletefile=True) # COPE # for the old stuff do interval = 1e-3, for the new stuff do interval = 1e-2
+    sim.automateSimulationArchive(directory_orbit_high+filename_orbit, interval=1e3, deletefile=True) # COPE # for the old stuff do interval = 1e-3, for the new stuff do interval = 1e-2
     #                                                                *****************
     
     #integrate
