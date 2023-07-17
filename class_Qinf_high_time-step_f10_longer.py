@@ -78,7 +78,7 @@ def survival(initial):
     
     #integrate
     N_times = int(10000) 
-    N_orbit = 10*(1e4)*2*np.pi  #(1e4)*2*np.pi for the regular stuff # for the new stuff, do (1e3)*2*np.pi
+    N_orbit = 5*(1e4)*2*np.pi  #(1e4)*2*np.pi for the regular stuff # for the new stuff, do (1e3)*2*np.pi
     #         ***********
     times = np.linspace(0,N_orbit,N_times)
 
@@ -119,10 +119,9 @@ def survival(initial):
     surv[(surv==0)] = time
    
     # SAVING RAW SURVIVAL TIMES
-    #directory_surv = "/mnt/raid-cita/ksmith/cste_Q1/" #cste
-    directory_high = "/mnt/raid-cita/ksmith/cste_high-timestep_f10_longer/" # cste_high-timestep
-    file_surv = r"high_time-step_f10_longer_raw_surv_time_Q{:.1f}_eb{:.3f}_ap{:.3f}.npy".format(Q,eb,ap) #cste
-    np.save(directory_high+file_surv, surv) #cste # CHANGE FROM BEING suvr OR high
+    #directory_high = "/mnt/raid-cita/ksmith/cste_high-timestep_f10_longer/" # cste_high-timestep
+    #file_surv = r"high_time-step_f10_longer_raw_surv_time_Q{:.1f}_eb{:.3f}_ap{:.3f}.npy".format(Q,eb,ap) #cste
+    #np.save(directory_high+file_surv, surv) #cste # CHANGE FROM BEING suvr OR high
 
     # SAVING BINARY ECCENTRICITIES W/ ebs, should only end up w/ 50 files as ap changes and eb remains the same, so the overwrite each other, don't bother trying to selectively have only 1 file for 1 eb
     ## DONT THINK I NEED THESE, CAN'T REMEBER (march 20th, 2023)
