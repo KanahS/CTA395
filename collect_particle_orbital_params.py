@@ -6,6 +6,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import rebound as rb
 import reboundx as rx
+import pickle
 
 particle_hash_names = ["Binary 2", "Planet 1", "Planet 2", "Planet 3", "Planet 4", "Planet 5", 
                        "Planet 6", "Planet 7", "Planet 8", "Planet 9", "Planet 10", "Planet 11", "Planet 12", 
@@ -70,7 +71,7 @@ def collect_particle_orbital_params(archive):
     sim_archive = rb.SimulationArchive(archive) # using to get number of snapshots
     snap_num = np.arange(len(sim_archive)) # number of snapshots to iterate through
                               # for the high-timestep sims, take in the first 10,000, 50,000 or 100,000 snapshots
-    for snap in range(50000, 100000): # for a non-high-timestep simulation, make this len(snap_num)
+    for snap in range(100000): # for a non-high-timestep simulation, make this len(snap_num)
         sim = None 
         sim = rb.Simulation(archive, snapshot=snap) 
 
@@ -101,13 +102,13 @@ Q1_high_time_step_collection = collect_particle_orbital_params("/mnt/raid-cita/k
 dictionary_directory = "/mnt/raid-cita/ksmith/sim_dictionaries/"
 
 # SAVE THE DIRECTIONARY
-np.save(dictionary_directory+"high_time_step_50k-100k_snaps_dict_Q10_eb0.702_ap2.878.npy", Q1_high_time_step_collection)
+np.save(dictionary_directory+"high_time_step_100k_snaps_dict_Q10_eb0.702_ap2.878.npy", Q1_high_time_step_collection)
 #np.save(dictionary_directory+"high_time_step_10k_snaps_dict_Qinf_eb0.702_ap2.878.npy", Qinf_high_time_step_collection)
 
 #np.save(dictionary_directory+"high_time_step_f10_10k_snaps_dict_Qinf_eb0.702_ap2.878.npy", Qinf_high_time_step_f10_collection)
 #np.save(dictionary_directory+"high_time_step_f10_10k_snaps_dict_Q10_eb0.702_ap2.878.npy", Q1_high_time_step_f10_collection)
 
-np.save("/mnt/raid-cita/ksmith/Q1_50k-100k_DICT_DONE.npy", "DICTIONARY COLLECTION DONE")
+np.save("/mnt/raid-cita/ksmith/Q1_100k_DICT_DONE.npy", "DICTIONARY COLLECTION DONE")
 #np.save("/mnt/raid-cita/ksmith/Qinf_10k_DICT_DONE.npy", "DICTIONARY COLLECTION DONE!")
 
 #np.save("/mnt/raid-cita/ksmith/Qinf_10_f10_DICT_DONE.npy", "DICTIONARY COLLECTION DONE")
