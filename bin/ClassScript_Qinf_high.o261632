@@ -1,0 +1,24 @@
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/cita/modules/python/3.10.2/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/cita/modules/python/3.10.2/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/fs/lustre/scratch/RAID-CITA/ksmith/runs/class_Qinf_high_time-step.py", line 163, in survival
+    t.add_column(Column(name=p_hash_names[k]+ " sma", data=at[k]))
+  File "/cita/modules/python/3.10.2/lib/python3.10/site-packages/astropy/table/table.py", line 2193, in add_column
+    raise ValueError('Inconsistent data column lengths')
+ValueError: Inconsistent data column lengths
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/fs/lustre/scratch/RAID-CITA/ksmith/runs/class_Qinf_high_time-step.py", line 183, in <module>
+    mapping = pool.map(func= survival, iterable= tup_list)
+  File "/cita/modules/python/3.10.2/lib/python3.10/site-packages/rebound/interruptible_pool.py", line 94, in map
+    return r.get(self.wait_timeout)
+  File "/cita/modules/python/3.10.2/lib/python3.10/multiprocessing/pool.py", line 771, in get
+    raise self._value
+ValueError: Inconsistent data column lengths
