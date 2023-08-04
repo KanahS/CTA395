@@ -30,11 +30,11 @@ Nq = len(Qex)
 
 # THESE ARE THE COLOURMAPS GENERATED FOR EACH Q VALUE DURING THE SIMULATION RUNS 
 
-#sunnyQ1 = np.load("/mnt/raid-cita/ksmith/all_Q_colour_maps/map_tup50plan15_Q[10].npy")
-#sunnyQ2 = np.load("/mnt/raid-cita/ksmith/all_Q_colour_maps/map_tup50plan15_Q[100].npy")
-#sunnyQ3 = np.load("/mnt/raid-cita/ksmith/all_Q_colour_maps/map_tup50plan15_Q[1000].npy")
-#sunnyQ4 = np.load("/mnt/raid-cita/ksmith/all_Q_colour_maps/map_tup50plan15_Q[10000].npy")
-#sunnyQinf = np.load("/mnt/raid-cita/ksmith/all_Q_colour_maps/map_tup50plan15_Q[inf].npy")
+sunnyQ1 = np.load("/mnt/raid-cita/ksmith/all_Q_colour_maps/map_tup50plan15_Q[10].npy")
+sunnyQ2 = np.load("/mnt/raid-cita/ksmith/all_Q_colour_maps/map_tup50plan15_Q[100].npy")
+sunnyQ3 = np.load("/mnt/raid-cita/ksmith/all_Q_colour_maps/map_tup50plan15_Q[1000].npy")
+sunnyQ4 = np.load("/mnt/raid-cita/ksmith/all_Q_colour_maps/map_tup50plan15_Q[10000].npy")
+sunnyQinf = np.load("/mnt/raid-cita/ksmith/all_Q_colour_maps/map_tup50plan15_Q[inf].npy")
 
 sunnyplot = np.concatenate((sunnyQ1,sunnyQ2,sunnyQ3,sunnyQ4,sunnyQinf))
 # len(sunnyplot) = 12500
