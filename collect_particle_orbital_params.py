@@ -12,12 +12,10 @@ particle_hash_names = ["Binary 2", "Planet 1", "Planet 2", "Planet 3", "Planet 4
                        "Planet 6", "Planet 7", "Planet 8", "Planet 9", "Planet 10", "Planet 11", "Planet 12", 
                        "Planet 13", "Planet 14", "Planet 15"] 
 
-def collect_particle_orbital_params(archive):
-    """
+# initializing dictionary to collect evolution of all particle orbital elements
 
-    """
-    # initializing dictionary to collect evolution of all particle orbital elements
-    particle_evolution_dict = {"Binary 2": {"semi-major_axis":[], 
+particle_evolution_dict = None
+particle_evolution_dict = {"Binary 2": {"semi-major_axis":[], 
                                           "eccentricity":[], 
                                           "time":[]},
                             "Planet 1": {"semi-major_axis":[], 
@@ -67,16 +65,25 @@ def collect_particle_orbital_params(archive):
                                           "time":[]},
                             
                             }
-    
-    sim_archive = rb.SimulationArchive(archive) # using to get number of snapshots
-    snap_num = np.arange(len(sim_archive)) # number of snapshots to iterate through
-                              # for the high-timestep sims, take in the first 10,000, 50,000 or 100,000 snapshots
-    for snap in range(100000): # for a non-high-timestep simulation, make this len(snap_num)
-        sim = None 
-        sim = rb.Simulation(archive, snapshot=snap) 
+def collect_particle_orbital_params(archive):
+    """
 
-        for particle_name in particle_hash_names:                            
-            # try and except statement, to see if the particle is still in the simulation
+    """    
+    #sim_archive = None
+    #sim_archive = rb.Simulation(archive) # using to get number of snapshots
+    #sim_length = len(sim_archive)
+    #snap_num = np.arange(len(sim_archive)) # number of snapshots to iterate through
+                              # for the high-timestep sims, take in the first 10,000, 50,000 or 100,000 snapshots
+    # for a non-high-timestep simulation, make this len(snap_num)        
+    for snap in range(100000):
+        print("Starting snap #", snap)
+        sim = None
+        sim = rb.Simulation(archive, snapshot=snap)
+            
+        for particle_name in particle_hash_names:
+        #print("Starting", particle_name)
+        # try and except statement, to see if the particle is still in the simulation
+
             try:            
                 # access the particle's orbital elements
                 semi = sim.particles[particle_name].a
@@ -93,7 +100,11 @@ def collect_particle_orbital_params(archive):
                 
     return particle_evolution_dict
 
+#test = rb.SimulationArchive("/mnt/raid-cita/ksmith/cope_high-timestep/sim_archive_Q10.0_eb0.702_ap2.878.bin")
+#print(test[5].particles["Planet 1"].e)
+
 Q1_high_time_step_collection = collect_particle_orbital_params("/mnt/raid-cita/ksmith/cope_high-timestep/sim_archive_Q10.0_eb0.702_ap2.878.bin")
+
 #Qinf_high_time_step_collection = collect_particle_orbital_params("/mnt/raid-cita/ksmith/cope_high-timestep/cope_high_timestep_sim_archive_Qinf_eb0.702_ap2.878.bin")
 
 #Q1_high_time_step_f10_collection = collect_particle_orbital_params("/mnt/raid-cita/ksmith/cope_high-timestep_f10_longer/high_time-step_f10_longer_sim_archive_Q10.0_eb0.702_ap2.878.bin")
@@ -102,13 +113,17 @@ Q1_high_time_step_collection = collect_particle_orbital_params("/mnt/raid-cita/k
 dictionary_directory = "/mnt/raid-cita/ksmith/sim_dictionaries/"
 
 # SAVE THE DIRECTIONARY
-np.save(dictionary_directory+"high_time_step_100k_snaps_dict_Q10_eb0.702_ap2.878.npy", Q1_high_time_step_collection)
+with open(dictionary_directory+"high_time_step_100k_snaps_dict_Q10_eb0.702_ap2.878.pickle", "wb") as handle:
+    pickle.dump(particle_evolution_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+#np.save(dictionary_directory+"high_time_step_100k_snaps_dict_Q10_eb0.702_ap2.878.npy", Q1_high_time_step_collection)
 #np.save(dictionary_directory+"high_time_step_10k_snaps_dict_Qinf_eb0.702_ap2.878.npy", Qinf_high_time_step_collection)
 
 #np.save(dictionary_directory+"high_time_step_f10_10k_snaps_dict_Qinf_eb0.702_ap2.878.npy", Qinf_high_time_step_f10_collection)
 #np.save(dictionary_directory+"high_time_step_f10_10k_snaps_dict_Q10_eb0.702_ap2.878.npy", Q1_high_time_step_f10_collection)
 
 np.save("/mnt/raid-cita/ksmith/Q1_100k_DICT_DONE.npy", "DICTIONARY COLLECTION DONE")
+print("DONE")
 #np.save("/mnt/raid-cita/ksmith/Qinf_10k_DICT_DONE.npy", "DICTIONARY COLLECTION DONE!")
 
 #np.save("/mnt/raid-cita/ksmith/Qinf_10_f10_DICT_DONE.npy", "DICTIONARY COLLECTION DONE")
