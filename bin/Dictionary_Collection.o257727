@@ -1,3 +1,0 @@
-/cita/modules/python/3.10.2/lib/python3.10/site-packages/rebound/simulation.py:505: RuntimeWarning: You have to reset function pointers after creating a reb_simulation struct with a binary file.
-  warnings.warn(message, RuntimeWarning)
-=>> PBS: job killed: walltime 172859 exceeded limit 172800
